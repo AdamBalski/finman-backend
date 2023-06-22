@@ -9,5 +9,4 @@ public class FinmanBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(FinmanBackendApplication.class, args);
     }
-
 }

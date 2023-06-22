@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "application.security.jwt.signing-key",
+      "type": "java.lang.String",
+      "description": "Key used to sign JWTs used to authenticate the user."
+    },
+    {
+      "name": "application.security.jwt.expires-in",
+      "type": "java.lang.String",
+      "description": "Describes the period after which a JWT should expire."
+    }
+  ] }
