@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,7 +33,8 @@ public class JwtFilter extends OncePerRequestFilter {
     JwtUtil jwtUtil;
 
     @Autowired
-    public JwtFilter(UserDetailsService userDetailsService, JwtUtil jwtUtil) {
+    public JwtFilter(@Qualifier("userRepositoryBasedUserDetailsServiceImpl") UserDetailsService userDetailsService,
+                     JwtUtil jwtUtil) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
     }
