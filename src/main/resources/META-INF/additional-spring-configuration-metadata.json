@@ -9,5 +9,15 @@
       "name": "application.security.jwt.expires-in",
       "type": "java.lang.String",
       "description": "Describes the period after which a JWT should expire."
+    },
+    {
+      "name": "application.security.jwt.signingKey",
+      "type": "java.lang.String",
+      "description": "Description for application.security.jwt.signingKey."
+    },
+    {
+      "name": "application.security.refreshToken.expires-in",
+      "type": "java.lang.String",
+      "description": "Describes the period after which a refresh token should expire."
     }
   ] }

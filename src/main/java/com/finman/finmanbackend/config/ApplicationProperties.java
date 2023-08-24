@@ -20,6 +20,10 @@ public class ApplicationProperties {
         @Getter
         @Setter
         Jwt jwt;
+
+        @Getter
+        @Setter
+        RefreshToken refreshToken;
         public static class Jwt {
             @Getter
             @Setter
@@ -27,6 +31,12 @@ public class ApplicationProperties {
             @Getter
             @Setter
             private String signingKey;
+        }
+
+        public static class RefreshToken {
+            @Getter
+            @Setter
+            private long expiresIn;
         }
     }
 
