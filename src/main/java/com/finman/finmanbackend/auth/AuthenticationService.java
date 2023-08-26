@@ -57,7 +57,7 @@ public class AuthenticationService {
 
         Cookie cookie = new Cookie("REFRESH_TOKEN", uuid.toString());
         cookie.setMaxAge((int)applicationProperties.getSecurity().getRefreshToken().getExpiresIn());
-        cookie.setPath("/api/v1/auth/refresh-jwt");
+        cookie.setPath("/api/v1/auth/get-jwt");
         return cookie;
     }
 

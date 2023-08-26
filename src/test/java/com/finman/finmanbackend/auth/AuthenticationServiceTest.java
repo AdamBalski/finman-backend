@@ -138,7 +138,7 @@ class AuthenticationServiceTest {
 
         assertEquals(result.getValue(), savedRefreshToken.getUuid().toString());
         assertEquals(result.getMaxAge(), 42);
-        assertEquals(result.getPath(), "/api/v1/auth/refresh-jwt");
+        assertEquals(result.getPath(), "/api/v1/auth/get-jwt");
         assertEquals("REFRESH_TOKEN", result.getName());
     }
 
