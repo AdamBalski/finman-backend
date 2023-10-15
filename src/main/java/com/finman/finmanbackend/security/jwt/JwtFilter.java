@@ -61,7 +61,7 @@ public class JwtFilter extends OncePerRequestFilter {
             catch(Exception e) {
                 // pass, the context is cleared
                 // if the request needs the client to be authenticated
-                // it will throw 401 eventually
+                // it will throw 401 or 403 eventually
             }
         }
         filterChain.doFilter(request, response);
