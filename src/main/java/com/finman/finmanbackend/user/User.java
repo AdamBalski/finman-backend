@@ -1,5 +1,6 @@
 package com.finman.finmanbackend.user;
 
+import com.finman.finmanbackend.account.Account;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,24 +20,22 @@ import java.util.UUID;
  * @see Table
  * @author Adam Balski
  */
+@Getter
 @Entity
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "app_user", schema = "public")
 public class User {
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "uuid", columnDefinition = "uuid")
     private UUID id;
 
-    @Getter
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Getter
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Getter
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private UserRole role;
