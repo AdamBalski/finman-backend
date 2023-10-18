@@ -2,7 +2,9 @@ package com.finman.finmanbackend.action;
 
 import com.finman.finmanbackend.product.Product;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "action")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
