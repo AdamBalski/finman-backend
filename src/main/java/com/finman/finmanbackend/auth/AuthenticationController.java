@@ -18,14 +18,14 @@ public class AuthenticationController {
 
     @PostMapping(path = "/get-refresh-token")
     @PreAuthorize("permitAll")
-    public void getRefreshToken(@RequestBody LoginDto loginDto, HttpServletResponse response) throws HttpExceptions.WrongPassword401, HttpExceptions.NoSuchUsername401{
+    public void getRefreshToken(@RequestBody LoginDto loginDto, HttpServletResponse response) throws HttpAuthExceptions.WrongPassword401, HttpAuthExceptions.NoSuchUsername401{
         Cookie refreshCookie = authenticationService.authorizeAndCreateRefreshTokenCookie(loginDto);
         response.addCookie(refreshCookie);
     }
 
     @PostMapping(path = "/get-jwt")
     @PreAuthorize("permitAll()")
-    public JwtDto refreshJwt(@CookieValue("REFRESH_TOKEN") String refreshTokenCookie) throws HttpExceptions.NoSuchRefreshToken401{
+    public JwtDto refreshJwt(@CookieValue("REFRESH_TOKEN") String refreshTokenCookie) throws HttpAuthExceptions.NoSuchRefreshToken401{
         return authenticationService.refreshJwt(refreshTokenCookie);
     }
 }

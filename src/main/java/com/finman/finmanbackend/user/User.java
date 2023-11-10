@@ -1,11 +1,13 @@
 package com.finman.finmanbackend.user;
 
-import com.finman.finmanbackend.account.Account;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.UUID;
  * @author Adam Balski
  */
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "app_user", schema = "public")
@@ -33,6 +36,7 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore // don't include in http responses
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -40,7 +44,12 @@ public class User {
     @Column(name = "role", nullable = false)
     private UserRole role;
 
+    @JsonIgnore // don't include in http responses
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(role.getGrantedAuthority());
+    }
+
+    public static User valueOf(UserDto userDto, PasswordEncoder passwordEncoder) {
+        return new User(null, userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), UserRole.STANDARD);
     }
 }

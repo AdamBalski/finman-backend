@@ -6,12 +6,10 @@ import com.finman.finmanbackend.user.User;
 import com.finman.finmanbackend.user.UserRepository;
 import com.finman.finmanbackend.user.UserRole;
 import jakarta.servlet.http.Cookie;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -64,19 +62,19 @@ class AuthenticationServiceTest {
         Mockito.when(mockRefreshTokenRepository.findById(uuid)).thenReturn(Optional.empty());
         Executable executable = () -> authenticationService.refreshJwt(uuid.toString());
 
-        assertThrows(HttpExceptions.NoSuchRefreshToken401.class, executable);
+        assertThrows(HttpAuthExceptions.NoSuchRefreshToken401.class, executable);
     }
 
     @Test
     void testRefreshJwtWithNullRefreshTokenId() {
         Executable executable = () -> authenticationService.refreshJwt(null);
-        assertThrows(HttpExceptions.MalformedRefreshTokenId401.class, executable);
+        assertThrows(HttpAuthExceptions.MalformedRefreshTokenId401.class, executable);
     }
 
     @Test
     void testRefreshJwtWithMalformedRefreshTokenId() {
         Executable executable = () -> authenticationService.refreshJwt("not a uuid bozo");
-        assertThrows(HttpExceptions.MalformedRefreshTokenId401.class, executable);
+        assertThrows(HttpAuthExceptions.MalformedRefreshTokenId401.class, executable);
     }
 
     @Test
@@ -91,7 +89,7 @@ class AuthenticationServiceTest {
         Mockito.when(mockRefreshTokenRepository.findById(uuid)).thenReturn(Optional.of(refreshToken));
 
         Executable executable = () -> authenticationService.refreshJwt(uuid.toString());
-        assertThrows(HttpExceptions.NoSuchRefreshToken401.class, executable);
+        assertThrows(HttpAuthExceptions.NoSuchRefreshToken401.class, executable);
     }
 
     @Test
@@ -149,7 +147,7 @@ class AuthenticationServiceTest {
         Mockito.when(mockUserRepository.findOneByEmail("nonexistent-user")).thenReturn(Optional.empty());
 
         Executable executable = () -> authenticationService.authorizeAndCreateRefreshTokenCookie(loginDto);
-        assertThrows(HttpExceptions.NoSuchUsername401.class, executable);
+        assertThrows(HttpAuthExceptions.NoSuchUsername401.class, executable);
     }
 
     @Test
@@ -164,6 +162,6 @@ class AuthenticationServiceTest {
         Mockito.when(mockPasswordEncoder.matches(eq("password-wrong"), anyString())).thenReturn(false);
 
         Executable executable = () -> authenticationService.authorizeAndCreateRefreshTokenCookie(loginDto);
-        assertThrows(HttpExceptions.WrongPassword401.class, executable);
+        assertThrows(HttpAuthExceptions.WrongPassword401.class, executable);
     }
 }

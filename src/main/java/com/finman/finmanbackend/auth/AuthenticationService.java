@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
-import static com.finman.finmanbackend.auth.HttpExceptions.*;
+import static com.finman.finmanbackend.auth.HttpAuthExceptions.*;
 
 @Service
 public class AuthenticationService {

@@ -38,7 +38,7 @@ class UserRepositoryTest {
     @Test
     void testFindOneByEmailWhenThereIsNoSuchEntry() {
         userRepository.save(new User(
-                UUID.randomUUID(),
+                null,
                 "email1",
                 "password",
                 UserRole.ADMIN

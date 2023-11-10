@@ -11,7 +11,9 @@ import org.springframework.web.server.ResponseStatusException;
  * @see org.springframework.web.bind.annotation.RestController
  * @author Adam Balski
  */
-public abstract class HttpExceptions {
+public final class HttpAuthExceptions {
+    private HttpAuthExceptions() {}
+
     public static class NoSuchUsername401 extends ResponseStatusException {
         public NoSuchUsername401() {
             super(HttpStatus.UNAUTHORIZED, "NO_SUCH_USERNAME");
