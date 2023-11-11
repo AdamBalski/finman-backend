@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static com.finman.finmanbackend.user.UserDtoValidationResult.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.finman.finmanbackend.user.UserDtoValidationResult.VALID;
+import static com.finman.finmanbackend.user.UserDtoValidationResult.values;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserDtoValidationResultTest {
     @Test

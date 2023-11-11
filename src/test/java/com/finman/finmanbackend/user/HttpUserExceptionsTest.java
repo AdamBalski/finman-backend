@@ -1,10 +1,9 @@
 package com.finman.finmanbackend.user;
 
-import com.finman.finmanbackend.auth.HttpAuthExceptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HttpUserExceptionsTest {
     @Test

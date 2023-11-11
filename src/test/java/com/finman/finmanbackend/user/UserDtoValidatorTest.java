@@ -2,10 +2,9 @@ package com.finman.finmanbackend.user;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 
 import static com.finman.finmanbackend.user.UserDtoValidationResult.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserDtoValidatorTest {
     private UserDto userDto;

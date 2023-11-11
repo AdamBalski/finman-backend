@@ -2,9 +2,6 @@ package com.finman.finmanbackend;
 
 import com.finman.finmanbackend.security.SecurityConfig;
 import com.finman.finmanbackend.security.jwt.JwtUtil;
-import com.finman.finmanbackend.user.User;
-import com.finman.finmanbackend.user.UserRole;
-import lombok.With;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +18,6 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

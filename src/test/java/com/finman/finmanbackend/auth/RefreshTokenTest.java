@@ -2,12 +2,11 @@ package com.finman.finmanbackend.auth;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.Ref;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RefreshTokenTest {
     @Test

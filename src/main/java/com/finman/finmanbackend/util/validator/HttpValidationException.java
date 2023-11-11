@@ -9,6 +9,10 @@ public class HttpValidationException extends ResponseStatusException {
     }
 
     public <T> HttpValidationException(Class<T> clazz) {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, clazz.getName() + "_INVALID");
+        this(clazz.getName());
+    }
+
+    public HttpValidationException(String entity) {
+        super(HttpStatus.UNPROCESSABLE_ENTITY, entity + "_INVALID");
     }
 }

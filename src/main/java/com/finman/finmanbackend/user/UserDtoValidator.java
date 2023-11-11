@@ -1,7 +1,6 @@
 package com.finman.finmanbackend.user;
 
 import com.finman.finmanbackend.util.validator.Validator;
-import com.sun.net.httpserver.Authenticator;
 
 import java.util.regex.Pattern;
 

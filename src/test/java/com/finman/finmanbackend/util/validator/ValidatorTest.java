@@ -2,7 +2,7 @@ package com.finman.finmanbackend.util.validator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ValidatorTest {
     Validator<Integer, ValidationResultEnum> failure1Validator = element -> ValidationResultEnum.FAILURE1;

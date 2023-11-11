@@ -1,8 +1,6 @@
 package com.finman.finmanbackend.user;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.server.ResponseStatusException;
 
 public final class HttpUserExceptions {

@@ -2,15 +2,13 @@ package com.finman.finmanbackend.user;
 
 import com.finman.finmanbackend.user.HttpUserExceptions.EmailTaken409;
 import com.finman.finmanbackend.util.validator.HttpValidationException;
-import com.finman.finmanbackend.util.validator.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import java.util.UUID;
 
-import static com.finman.finmanbackend.user.HttpUserExceptions.*;
+import static com.finman.finmanbackend.user.HttpUserExceptions.IdNotFound404;
 
 @RestController
 @RequestMapping("/api/v1/user")

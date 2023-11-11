@@ -17,8 +17,10 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
+import java.util.List;
 import java.util.UUID;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,7 +44,7 @@ class AccountRepositoryTest {
     @BeforeEach
     void init() {
         user1 = userRepository.saveAndFlush(new User(UUID.randomUUID(), "email", "pass", UserRole.ADMIN));
-        account1 = accountRepository.save(new Account(UUID.randomUUID(), user1, "acc1"));
+        account1 = accountRepository.saveAndFlush(new Account(UUID.randomUUID(), user1, "acc1"));
     }
 
     @Test
@@ -69,4 +71,27 @@ class AccountRepositoryTest {
         assertDoesNotThrow(exe);
     }
 
+    @Test
+    void testFindByUserMail() {
+        List<Account> fetched = accountRepository.findByUserEmail(user1.getEmail());
+        assertEquals(1, fetched.size());
+        assertEquals(user1, fetched.get(0).getUser());
+        assertEquals(account1, fetched.get(0));
+    }
+
+    @Test
+    void testFindByUserMailAndEnsureReturnsOnlyThisUsersRepositories() {
+        User user2 = userRepository.saveAndFlush(new User(null, "email2", "pass2", UserRole.ADMIN));
+        Account account2 = accountRepository.saveAndFlush(new Account(null, user2, "name2"));
+
+        List<Account> fetched = accountRepository.findByUserEmail(user2.getEmail());
+        assertEquals(1, fetched.size());
+        assertEquals(user2, fetched.get(0).getUser());
+        assertEquals(account2, fetched.get(0));
+    }
+
+    @Test
+    void testFindByUserMailWhenNoSuchUser() {
+        assertEquals(List.of(), accountRepository.findByUserEmail("email_nonexistent"));
+    }
 }
